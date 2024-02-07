@@ -1,0 +1,109 @@
+------
+CREATE DATABASE mydb;
+------
+USE mydb;
+CREATE TABLE vegetables_and_fruits (
+				   	id INT AUTO_INCREMENT PRIMARY KEY,
+					name VARCHAR(255) NOT NULL UNIQUE, 
+					type VARCHAR(255) NOT NULL, 
+					color VARCHAR(255) NOT NULL, 
+					calorific INT NOT NULL, 
+					description VARCHAR(255)
+				   );
+------
+USE mydb;
+INSERT vegetables_and_fruits (name, type, color, calorific, description) VALUES("apple", "fruit", "red", 52, "red apples"), 
+			     ("orange", "fruit", "orange", 43, "test"), ("potato", "vegetable", "brown", 81, ""), 
+			     ("corn", "vegetable", "yellow", 123, "23123123"), 
+			     ("tomato", "vegetable", "red", 20, "red tomato");
+
+Задание 1
+
+-1-
+SELECT * FROM `vegetables_and_fruits`;
+-1-
+
+-2-
+SELECT * FROM `vegetables_and_fruits` WHERE type = "vegetable";
+-2-
+
+-3-
+SELECT * FROM `vegetables_and_fruits` WHERE type = "fruit";
+-3-
+
+-4-
+SELECT name FROM `vegetables_and_fruits`;
+-4-
+
+-5-
+SELECT DISTINCT color FROM `vegetables_and_fruits`;
+-5-
+
+-6-
+SELECT * FROM `vegetables_and_fruits` WHERE type = "fruit" AND color = "red";
+-6-
+
+-7-
+SELECT * FROM `vegetables_and_fruits` WHERE type = "vegetable" AND color = "brown";
+-7-
+
+Задание 2
+
+-1-
+SELECT * FROM `vegetables_and_fruits` WHERE type = "vegetable" AND calorific < 100;
+-1-
+
+-2-
+SELECT * FROM `vegetables_and_fruits` WHERE type = "fruit" AND calorific > 40 AND calorific < 50;
+-2-
+
+-3-
+SELECT * FROM `vegetables_and_fruits` WHERE type = "vegetable" AND name LIKE '%tomato%';
+-3-
+
+-4-
+SELECT * FROM `vegetables_and_fruits` WHERE description LIKE '%red%';
+-4-
+
+-5-
+SELECT * FROM `vegetables_and_fruits` WHERE color IN("red", "yellow");
+-5-
+
+Задание 3
+
+-1-
+SELECT COUNT(*) FROM `vegetables_and_fruits` WHERE type = "fruit";
+-1-
+
+-2-
+SELECT COUNT(*) FROM `vegetables_and_fruits` WHERE color = "red";
+-2-
+
+-3-
+SELECT
+	color,
+	COUNT(color)
+FROM `vegetables_and_fruits`
+GROUP BY 
+	color;
+-3-
+
+-4-
+SELECT
+	color,
+	(SELECT
+     		COUNT(*)
+     	 FROM
+     		`vegetables_and_fruits`
+         GROUP BY
+         	color
+     ) AS min
+FROM 
+     `vegetables_and_fruits`
+GROUP BY
+	color
+-4-
+
+
+
+
