@@ -91,17 +91,16 @@ GROUP BY
 -4-
 SELECT
 	color,
-	(SELECT
-     		COUNT(*)
+	MIN(x.countColor) AS min
+FROM 
+     (SELECT
+      		color,
+     		COUNT(*) AS countColor
      	 FROM
      		`vegetables_and_fruits`
          GROUP BY
          	color
-     ) AS min
-FROM 
-     `vegetables_and_fruits`
-GROUP BY
-	color
+     ) x
 -4-
 
 
