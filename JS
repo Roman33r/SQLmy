@@ -1,0 +1,22 @@
+function registerUser(){
+    let username = document.getElementById("username").value
+    let password = document.getElementById("password").value
+
+    let xhr = new XMLHttpRequest()
+    xhr.open("POST", "/register", true)
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    xhr.onreadystatechange = () =>{
+        if(xhr.readyState === 4){
+            if (xhr.status === 200){
+                document.getElementById('error').innerText("Успех")
+            }
+            else{
+                document.getElementById('error').innerText("Ошибка")
+            }
+        }
+    }
+
+    let data = "username="+encodeURIComponent(username)+"&password="+encodeURIComponent
+    xhr.send(data)
+}
