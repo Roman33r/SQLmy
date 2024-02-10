@@ -71,27 +71,27 @@ SELECT * FROM `vegetables_and_fruits` WHERE color IN("red", "yellow");
 
 Задание 3
 
--1-
+===1===
 SELECT COUNT(*) FROM `vegetables_and_fruits` WHERE type = "fruit";
--1-
+===1===
 
--2-
+===2===
 SELECT COUNT(*) FROM `vegetables_and_fruits` WHERE color = "red";
--2-
+===2===
 
--3-
+===3===
 SELECT
 	color,
 	COUNT(color)
 FROM `vegetables_and_fruits`
 GROUP BY 
 	color;
--3-
+===3===
 
--4-
+===4===
 SELECT
-	color,
-	MIN(x.countColor) AS min
+	x.color,
+	MIN(x.countColor) AS minCount
 FROM 
      (SELECT
       		color,
@@ -101,8 +101,38 @@ FROM
          GROUP BY
          	color
      ) x
--4-
+===4===
 
+===5===
+SELECT
+	x.color,
+	MAX(x.countColor) AS maxCount
+FROM 
+     (SELECT
+      		color,
+     		COUNT(*) AS countColor
+     	 FROM
+     		`vegetables_and_fruits`
+         GROUP BY
+         	color
+     ) x
+===5===
+
+===6===
+SELECT
+    MIN(calorific) AS minCalorific
+FROM
+	`vegetables_and_fruits`
+GROUP BY
+===6===
+
+===6===
+SELECT
+    MAX(calorific) AS minCalorific
+FROM
+	`vegetables_and_fruits`
+GROUP BY
+===6===
 
 
 
